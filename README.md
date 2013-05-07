@@ -29,9 +29,11 @@ This is actually what does the work.
 
 # Exchanging Client ID and Secret for a Token
 
+```bash
 curl -i -X POST -d '{"scopes": ["repo"], "note": "deployments from chef"}' \
   -u "githubuser:githubpassword"
   https://api.github.com/authorizations?client_id=GHCLIENTID&client_secret=GHCLIENTSECRET
+```
 
 Then look for: "token": "...". This is what you want to use for 'gh_token'.
 
