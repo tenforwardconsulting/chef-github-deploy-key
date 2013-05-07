@@ -30,7 +30,7 @@ action :add do
     },
   }
 
-  ruby_block "store SSH key for #{new_resource.path}" do
+  @upload_status = ruby_block "store SSH key for #{new_resource.path}" do
     # Upload our new and shiny SSH key with the repository
     block do
       require 'json'
@@ -69,7 +69,8 @@ action :add do
     @ssh_key_generated.updated? ||
     @file_creation.updated? ||
     @file_pub_creation.updated? ||
-    @dep_stats.updated?
+    @dep_stats.updated? ||
+    @upload_status.updated?
   )
 end
 
