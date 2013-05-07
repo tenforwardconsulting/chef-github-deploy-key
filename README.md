@@ -47,6 +47,6 @@ github_deploy_key "my-secret-app" do
   group "root"
 
   gh_token "..."
-  gh_repo "mycompany/my-secret-app
+  gh_repo "mycompany/my-secret-app"
 end
 ```
