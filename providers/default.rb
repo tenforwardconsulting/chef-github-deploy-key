@@ -44,10 +44,8 @@ action :add do
 
       response = HTTParty.post(url, post_data)
       unless response.code == 201
-        Chef::Log.warn("Could not add SSH key to GitHub: #{response.body}")
-        return false
+        raise "Could not add SSH key to GitHub: #{response.body}"
       end
-      return true
     end
 
     # Do not run if the SSH key is already registered with GitHub
