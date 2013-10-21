@@ -20,7 +20,10 @@ action :add do
     group new_resource.group
   end
 
-  @dep_stats = chef_gem 'httparty'
+  @dep_stats = chef_gem 'httparty' do 
+    version "0.11.0"
+    action :install
+  end
 
   url = "https://api.github.com/repos/#{new_resource.gh_repo}/keys"
   request_data = {
