@@ -61,8 +61,16 @@ action :add do
         throw "Could not retrieve key list: #{response.body}"
       end
 
-      keys = response.parsed_response.map { |x| x['key'] }
-      keys.include? ::File.read(new_resource.path + ".pub").strip
+      current_key = ::File.read(new_resource.path + ".pub").strip
+      found = false
+      response.parsed_response.each do |row|
+        # github strips the hostname off the end of the key
+        if current_key.start_with? row['key']
+          found = true and break
+        end
+      end
+
+      found
     end
   end
 
